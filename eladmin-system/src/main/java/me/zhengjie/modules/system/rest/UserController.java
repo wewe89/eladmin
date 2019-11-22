@@ -2,6 +2,7 @@ package me.zhengjie.modules.system.rest;
 
 import me.zhengjie.aop.log.Log;
 import me.zhengjie.config.DataScope;
+import me.zhengjie.config.Role;
 import me.zhengjie.domain.Picture;
 import me.zhengjie.domain.VerificationCode;
 import me.zhengjie.modules.system.domain.User;
@@ -119,7 +120,7 @@ public class UserController {
 
     @Log("删除用户")
     @DeleteMapping(value = "/users/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','USER_ALL','USER_DELETE')")
+    @PreAuthorize("hasAnyRole(Role.ADMIN,'USER_ALL','USER_DELETE')")
     public ResponseEntity delete(@PathVariable Long id){
         Integer currentLevel =  Collections.min(roleService.findByUsers_Id(SecurityUtils.getUserId()).stream().map(RoleSmallDTO::getLevel).collect(Collectors.toList()));
         Integer optLevel =  Collections.min(roleService.findByUsers_Id(id).stream().map(RoleSmallDTO::getLevel).collect(Collectors.toList()));
@@ -127,6 +128,7 @@ public class UserController {
         if (currentLevel > optLevel) {
             throw new BadRequestException("角色权限不足");
         }
+
         userService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }

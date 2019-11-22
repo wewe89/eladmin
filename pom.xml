@@ -15,9 +15,10 @@
         <module>eladmin-system</module>
         <module>eladmin-tools</module>
         <module>eladmin-generator</module>
+        <module>eladmin-my</module>
     </modules>
 
-    <name>EL-ADMIN后台管理系统</name>
+    <name>巴中农商银行综合管理系统</name>
     <url>http://auauz.net</url>
 
     <parent>
@@ -127,10 +128,10 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.37</version>
+            <version>8.0.17</version>
             <scope>runtime</scope>
         </dependency>
-        <!-- druid数据源驱动 --> 
+        <!-- druid数据源驱动 -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
