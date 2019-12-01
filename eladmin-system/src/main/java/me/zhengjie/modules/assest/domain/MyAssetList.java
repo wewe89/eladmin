@@ -3,6 +3,9 @@ package me.zhengjie.modules.assest.domain;
 import lombok.Data;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
+import me.zhengjie.modules.system.domain.Dept;
+import me.zhengjie.modules.system.domain.User;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -27,20 +30,23 @@ public class MyAssetList implements Serializable {
     private MyPrimaryCategory idPc;
 
     // 二级类别
-    @Column(name = "id_sc",nullable = false)
-    private Integer idSc;
+    @OneToOne
+    @JoinColumn(name = "id_sc")
+    private MySecondaryCategory idSc;
 
     // 资产名称
     @Column(name = "id_an")
     private Integer idAn;
 
     // 所属部门
-    @Column(name = "id_dept",nullable = false)
-    private Integer idDept;
+    @OneToOne
+    @JoinColumn(name = "id_dept",nullable = false)
+    private Dept idDept;
 
     // 责任者
-    @Column(name = "id_user",nullable = false)
-    private Integer idUser;
+    @OneToOne
+    @JoinColumn(name = "id_user",nullable = false)
+    private User idUser;
 
     // 状态
     @Column(name = "status",nullable = false)

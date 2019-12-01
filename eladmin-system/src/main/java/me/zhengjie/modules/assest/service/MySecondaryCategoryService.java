@@ -30,6 +30,7 @@ public interface MySecondaryCategoryService {
     */
     List<MySecondaryCategoryDTO> queryAll(MySecondaryCategoryQueryCriteria criteria);
 
+    Object queryAll(Pageable pageable);
     /**
      * 根据ID查询
      * @param id ID

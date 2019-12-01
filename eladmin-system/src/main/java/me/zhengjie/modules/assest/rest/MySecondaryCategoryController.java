@@ -5,6 +5,8 @@ import me.zhengjie.modules.assest.domain.MySecondaryCategory;
 import me.zhengjie.modules.assest.service.MySecondaryCategoryService;
 import me.zhengjie.modules.assest.service.dto.MySecondaryCategoryQueryCriteria;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -29,6 +31,12 @@ public class MySecondaryCategoryController {
         this.mySecondaryCategoryService = mySecondaryCategoryService;
     }
 
+    @ApiOperation("返回全部")
+    @GetMapping(value = "/all")
+    @PreAuthorize("@el.check('mySecondaryCategory:list')")
+    public ResponseEntity getAll(@PageableDefault(value = 2000, sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable){
+        return new ResponseEntity<>(mySecondaryCategoryService.queryAll(pageable),HttpStatus.OK);
+    }
     @Log("导出数据")
     @ApiOperation("导出数据")
     @GetMapping(value = "/download")

@@ -42,6 +42,7 @@ public class MyAssetListController {
     @ApiOperation("查询MyAssetList")
     @PreAuthorize("@el.check('myAssetList:list')")
     public ResponseEntity getMyAssetLists(MyAssetListQueryCriteria criteria, Pageable pageable){
+        myAssetListService.queryAll(criteria,pageable).;
         return new ResponseEntity<>(myAssetListService.queryAll(criteria,pageable),HttpStatus.OK);
     }
 

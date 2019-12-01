@@ -23,6 +23,7 @@ public interface MyPrimaryCategoryService {
     */
     Map<String,Object> queryAll(MyPrimaryCategoryQueryCriteria criteria, Pageable pageable);
 
+    Object queryAll(Pageable pageable);
     /**
     * 查询所有数据不分页
     * @param criteria 条件参数

@@ -37,7 +37,11 @@ public class MySecondaryCategoryServiceImpl implements MySecondaryCategoryServic
     private final MySecondaryCategoryRepository mySecondaryCategoryRepository;
 
     private final MySecondaryCategoryMapper mySecondaryCategoryMapper;
-
+    @Override
+    @Cacheable
+    public Object queryAll(Pageable pageable) {
+        return mySecondaryCategoryMapper.toDto(mySecondaryCategoryRepository.findAll(pageable).getContent());
+    }
     public MySecondaryCategoryServiceImpl(MySecondaryCategoryRepository mySecondaryCategoryRepository, MySecondaryCategoryMapper mySecondaryCategoryMapper) {
         this.mySecondaryCategoryRepository = mySecondaryCategoryRepository;
         this.mySecondaryCategoryMapper = mySecondaryCategoryMapper;

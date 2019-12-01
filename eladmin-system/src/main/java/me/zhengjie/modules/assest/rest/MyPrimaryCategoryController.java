@@ -5,6 +5,8 @@ import me.zhengjie.modules.assest.domain.MyPrimaryCategory;
 import me.zhengjie.modules.assest.service.MyPrimaryCategoryService;
 import me.zhengjie.modules.assest.service.dto.MyPrimaryCategoryQueryCriteria;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -27,6 +29,12 @@ public class MyPrimaryCategoryController {
 
     public MyPrimaryCategoryController(MyPrimaryCategoryService myPrimaryCategoryService) {
         this.myPrimaryCategoryService = myPrimaryCategoryService;
+    }
+    @ApiOperation("返回全部")
+    @GetMapping(value = "/all")
+    @PreAuthorize("@el.check('myPrimaryCategory:list')")
+    public ResponseEntity getAll(@PageableDefault(value = 2000, sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable){
+        return new ResponseEntity<>(myPrimaryCategoryService.queryAll(pageable),HttpStatus.OK);
     }
 
     @Log("导出数据")

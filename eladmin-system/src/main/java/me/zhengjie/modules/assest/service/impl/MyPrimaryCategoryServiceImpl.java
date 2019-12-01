@@ -42,7 +42,11 @@ public class MyPrimaryCategoryServiceImpl implements MyPrimaryCategoryService {
         this.myPrimaryCategoryRepository = myPrimaryCategoryRepository;
         this.myPrimaryCategoryMapper = myPrimaryCategoryMapper;
     }
-
+    @Override
+    @Cacheable
+    public Object queryAll(Pageable pageable) {
+        return myPrimaryCategoryMapper.toDto(myPrimaryCategoryRepository.findAll(pageable).getContent());
+    }
     @Override
     @Cacheable
     public Map<String,Object> queryAll(MyPrimaryCategoryQueryCriteria criteria, Pageable pageable){

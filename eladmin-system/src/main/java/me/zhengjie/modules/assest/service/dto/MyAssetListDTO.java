@@ -1,6 +1,9 @@
 package me.zhengjie.modules.assest.service.dto;
 
 import lombok.Data;
+import me.zhengjie.modules.system.domain.Dept;
+import me.zhengjie.modules.system.domain.User;
+
 import java.io.Serializable;
 
 
@@ -18,16 +21,16 @@ public class MyAssetListDTO implements Serializable {
     private MyPrimaryCategoryDTO idPc;
 
     // 二级类别
-    private Integer idSc;
+    private MySecondaryCategoryDTO idSc;
 
     // 资产名称
     private Integer idAn;
 
     // 所属部门
-    private Integer idDept;
+    private Dept idDept;
 
     // 责任者
-    private Integer idUser;
+    private User idUser;
 
     // 状态
     private Integer status;
