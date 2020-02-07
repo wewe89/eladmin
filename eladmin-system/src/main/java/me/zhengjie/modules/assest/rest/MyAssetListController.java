@@ -3,6 +3,7 @@ package me.zhengjie.modules.assest.rest;
 import me.zhengjie.aop.log.Log;
 import me.zhengjie.modules.assest.domain.MyAssetList;
 import me.zhengjie.modules.assest.service.MyAssetListService;
+import me.zhengjie.modules.assest.service.MyAssetNameService;
 import me.zhengjie.modules.assest.service.dto.MyAssetListQueryCriteria;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -24,9 +25,11 @@ import javax.servlet.http.HttpServletResponse;
 public class MyAssetListController {
 
     private final MyAssetListService myAssetListService;
+    private final MyAssetNameService myAssetNameService;
 
-    public MyAssetListController(MyAssetListService myAssetListService) {
+    public MyAssetListController(MyAssetListService myAssetListService,MyAssetNameService myAssetNameService) {
         this.myAssetListService = myAssetListService;
+        this.myAssetNameService=myAssetNameService;
     }
 
     @Log("导出数据")
@@ -42,7 +45,6 @@ public class MyAssetListController {
     @ApiOperation("查询MyAssetList")
     @PreAuthorize("@el.check('myAssetList:list')")
     public ResponseEntity getMyAssetLists(MyAssetListQueryCriteria criteria, Pageable pageable){
-        myAssetListService.queryAll(criteria,pageable).;
         return new ResponseEntity<>(myAssetListService.queryAll(criteria,pageable),HttpStatus.OK);
     }
 
@@ -51,7 +53,7 @@ public class MyAssetListController {
     @ApiOperation("新增MyAssetList")
     @PreAuthorize("@el.check('myAssetList:add')")
     public ResponseEntity create(@Validated @RequestBody MyAssetList resources){
-        System.out.println(resources.toString());
+        resources.setName(myAssetNameService.findById(resources.getIdAn()).getName());
         return new ResponseEntity<>(myAssetListService.create(resources),HttpStatus.CREATED);
     }
 
@@ -60,6 +62,7 @@ public class MyAssetListController {
     @ApiOperation("修改MyAssetList")
     @PreAuthorize("@el.check('myAssetList:edit')")
     public ResponseEntity update(@Validated @RequestBody MyAssetList resources){
+        resources.setName(myAssetNameService.findById(resources.getIdAn()).getName());
         myAssetListService.update(resources);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }

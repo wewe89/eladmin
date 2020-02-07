@@ -5,6 +5,7 @@ import me.zhengjie.modules.system.domain.Dept;
 import me.zhengjie.modules.system.domain.User;
 
 import java.io.Serializable;
+import java.util.Date;
 
 
 /**
@@ -33,5 +34,12 @@ public class MyAssetListDTO implements Serializable {
     private User idUser;
 
     // 状态
-    private Integer status;
+    private Boolean status;
+
+    private String name;
+
+    private Date receivetime;
+
+    private String note;
+
 }

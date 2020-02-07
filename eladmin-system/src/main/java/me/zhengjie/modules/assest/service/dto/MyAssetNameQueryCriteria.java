@@ -9,4 +9,10 @@ import me.zhengjie.annotation.Query;
 */
 @Data
 public class MyAssetNameQueryCriteria{
+    @Query(type = Query.Type.EQUAL)
+    private Integer pcid;
+    @Query(type = Query.Type.EQUAL)
+    private Integer scid;
+    @Query(type = Query.Type.EQUAL)
+    private Boolean status;
 }

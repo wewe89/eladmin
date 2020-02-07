@@ -24,7 +24,6 @@ public class MyPrimaryCategory implements Serializable {
     // 名称
     @Column(name = "name",nullable = false)
     private String name;
-
     public void copy(MyPrimaryCategory source){
         BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));
     }

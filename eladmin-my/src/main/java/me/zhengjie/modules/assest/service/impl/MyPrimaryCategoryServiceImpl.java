@@ -44,8 +44,20 @@ public class MyPrimaryCategoryServiceImpl implements MyPrimaryCategoryService {
     }
     @Override
     @Cacheable
-    public Object queryAll() {
-        return myPrimaryCategoryMapper.toDto(myPrimaryCategoryRepository.findAll());
+    public Object queryAll(Pageable pageable) {
+        return myPrimaryCategoryMapper.toDto(myPrimaryCategoryRepository.findAll(pageable).getContent());
+    }
+    @Override
+    @Cacheable
+    public Map<String,Object> queryAll(MyPrimaryCategoryQueryCriteria criteria, Pageable pageable){
+        Page<MyPrimaryCategory> page = myPrimaryCategoryRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder),pageable);
+        return PageUtil.toPage(page.map(myPrimaryCategoryMapper::toDto));
+    }
+
+    @Override
+    @Cacheable
+    public List<MyPrimaryCategoryDTO> queryAll(MyPrimaryCategoryQueryCriteria criteria){
+        return myPrimaryCategoryMapper.toDto(myPrimaryCategoryRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder)));
     }
 
     @Override
@@ -80,4 +92,15 @@ public class MyPrimaryCategoryServiceImpl implements MyPrimaryCategoryService {
         myPrimaryCategoryRepository.deleteById(id);
     }
 
+
+    @Override
+    public void download(List<MyPrimaryCategoryDTO> all, HttpServletResponse response) throws IOException {
+        List<Map<String, Object>> list = new ArrayList<>();
+        for (MyPrimaryCategoryDTO myPrimaryCategory : all) {
+            Map<String,Object> map = new LinkedHashMap<>();
+            map.put("名称", myPrimaryCategory.getName());
+            list.add(map);
+        }
+        FileUtil.downloadExcel(list, response);
+    }
 }

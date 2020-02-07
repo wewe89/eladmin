@@ -23,6 +23,13 @@ public class MyAssetName implements Serializable {
     // 资产名称
     @Column(name = "name")
     private String name;
+    // 资产名称
+    @Column(name = "info")
+    private String info;
+    @Column(name = "pcid")
+    private Integer pcid;
+    @Column(name = "scid")
+    private Integer scid;
 
     public void copy(MyAssetName source){
         BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));

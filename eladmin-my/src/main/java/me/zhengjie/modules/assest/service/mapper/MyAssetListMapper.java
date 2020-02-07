@@ -10,7 +10,7 @@ import org.mapstruct.ReportingPolicy;
 * @author zhangxingyu
 * @date 2019-11-28
 */
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring", uses = {MyPrimaryCategoryMapper.class},unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface MyAssetListMapper extends BaseMapper<MyAssetListDTO, MyAssetList> {
 
 }

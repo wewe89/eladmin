@@ -15,12 +15,7 @@
     <dependencies>
         <dependency>
             <groupId>me.zhengjie</groupId>
-            <artifactId>eladmin-common</artifactId>
-            <version>2.3</version>
-        </dependency>
-        <dependency>
-            <groupId>me.zhengjie</groupId>
-            <artifactId>eladmin-logging</artifactId>
+            <artifactId>eladmin-system</artifactId>
             <version>2.3</version>
         </dependency>
     </dependencies>

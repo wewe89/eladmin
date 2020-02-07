@@ -9,12 +9,10 @@ import java.io.Serializable;
 * @date 2019-11-28
 */
 @Data
-public class MySecondaryCategoryDTO implements Serializable {
+public class MyAssetNameDTO implements Serializable {
 
-    // id
     private Integer id;
-    private Integer pid;
 
-    // 类别
+    // 资产名称
     private String name;
 }

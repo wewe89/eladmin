@@ -34,8 +34,24 @@ public class MyPrimaryCategoryController {
     @ApiOperation("返回全部")
     @GetMapping(value = "/all")
     @AnonymousAccess
-    public ResponseEntity getAll(){
-        return new ResponseEntity<>(myPrimaryCategoryService.queryAll(),HttpStatus.OK);
+    public ResponseEntity getAll(@PageableDefault(value = 2000, sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable){
+        return new ResponseEntity<>(myPrimaryCategoryService.queryAll(pageable),HttpStatus.OK);
+    }
+
+    @Log("导出数据")
+    @ApiOperation("导出数据")
+    @GetMapping(value = "/download")
+    @AnonymousAccess
+    public void download(HttpServletResponse response, MyPrimaryCategoryQueryCriteria criteria) throws IOException {
+        myPrimaryCategoryService.download(myPrimaryCategoryService.queryAll(criteria), response);
+    }
+
+    @GetMapping
+    @Log("查询MyPrimaryCategory")
+    @ApiOperation("查询MyPrimaryCategory")
+    @AnonymousAccess
+    public ResponseEntity getMyPrimaryCategorys(MyPrimaryCategoryQueryCriteria criteria, Pageable pageable){
+        return new ResponseEntity<>(myPrimaryCategoryService.queryAll(criteria,pageable),HttpStatus.OK);
     }
 
     @PostMapping

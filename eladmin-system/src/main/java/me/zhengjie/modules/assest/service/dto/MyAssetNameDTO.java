@@ -12,7 +12,14 @@ import java.io.Serializable;
 public class MyAssetNameDTO implements Serializable {
 
     private Integer id;
+    private Integer pcid;
+    private Integer scid;
 
     // 资产名称
     private String name;
+    private String info;
+
+    public String getName() {
+        return name;
+    }
 }

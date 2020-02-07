@@ -57,9 +57,7 @@ public class MySecondaryCategoryServiceImpl implements MySecondaryCategoryServic
     @Override
     @Cacheable
     public List<MySecondaryCategoryDTO> queryAll(MySecondaryCategoryQueryCriteria criteria){
-        return mySecondaryCategoryMapper.toDto(
-                mySecondaryCategoryRepository.findAll((root, criteriaQuery, criteriaBuilder) ->
-                        QueryHelp.getPredicate(root,criteria,criteriaBuilder)));
+        return mySecondaryCategoryMapper.toDto(mySecondaryCategoryRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder)));
     }
 
     @Override
@@ -94,4 +92,15 @@ public class MySecondaryCategoryServiceImpl implements MySecondaryCategoryServic
         mySecondaryCategoryRepository.deleteById(id);
     }
 
+
+    @Override
+    public void download(List<MySecondaryCategoryDTO> all, HttpServletResponse response) throws IOException {
+        List<Map<String, Object>> list = new ArrayList<>();
+        for (MySecondaryCategoryDTO mySecondaryCategory : all) {
+            Map<String,Object> map = new LinkedHashMap<>();
+            map.put("类别", mySecondaryCategory.getName());
+            list.add(map);
+        }
+        FileUtil.downloadExcel(list, response);
+    }
 }

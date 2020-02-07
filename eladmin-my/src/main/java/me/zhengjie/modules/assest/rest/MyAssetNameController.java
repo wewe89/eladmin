@@ -30,12 +30,20 @@ public class MyAssetNameController {
         this.myAssetNameService = myAssetNameService;
     }
 
+    @Log("导出数据")
+    @ApiOperation("导出数据")
+    @GetMapping(value = "/download")
+    @AnonymousAccess
+    public void download(HttpServletResponse response, MyAssetNameQueryCriteria criteria) throws IOException {
+        myAssetNameService.download(myAssetNameService.queryAll(criteria), response);
+    }
+
+    @GetMapping
     @Log("查询MyAssetName")
     @ApiOperation("查询MyAssetName")
-    @GetMapping(value = "/getMyAssetNames")
     @AnonymousAccess
-    public ResponseEntity getMyAssetNames(MyAssetNameQueryCriteria criteria){
-        return new ResponseEntity<>(myAssetNameService.queryAll(criteria),HttpStatus.OK);
+    public ResponseEntity getMyAssetNames(MyAssetNameQueryCriteria criteria, Pageable pageable){
+        return new ResponseEntity<>(myAssetNameService.queryAll(criteria,pageable),HttpStatus.OK);
     }
 
     @PostMapping

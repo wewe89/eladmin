@@ -43,4 +43,5 @@ public interface MyAssetNameService {
 
     void delete(Integer id);
 
+    void download(List<MyAssetNameDTO> all, HttpServletResponse response) throws IOException;
 }

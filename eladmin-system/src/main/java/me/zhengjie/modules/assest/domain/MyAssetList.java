@@ -8,6 +8,7 @@ import me.zhengjie.modules.system.domain.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
 * @author zhangxingyu
@@ -38,6 +39,22 @@ public class MyAssetList implements Serializable {
     @Column(name = "id_an")
     private Integer idAn;
 
+    public Integer getIdAn() {
+        return idAn;
+    }
+
+    public void setIdAn(Integer idAn) {
+        this.idAn = idAn;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     // 所属部门
     @OneToOne
     @JoinColumn(name = "id_dept",nullable = false)
@@ -50,7 +67,17 @@ public class MyAssetList implements Serializable {
 
     // 状态
     @Column(name = "status",nullable = false)
-    private Integer status;
+    private Boolean status;
+
+    @Column(name = "name",nullable = false)
+    private String name;
+
+    @Column(name = "receivetime",nullable = false)
+    private Date receivetime;
+
+    // 可用性
+    @Column(name = "note",nullable = false)
+    private String note;
 
     public void copy(MyAssetList source){
         BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));

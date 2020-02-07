@@ -15,8 +15,21 @@ import javax.servlet.http.HttpServletResponse;
 */
 public interface MyPrimaryCategoryService {
 
+    /**
+    * 查询数据分页
+    * @param criteria 条件参数
+    * @param pageable 分页参数
+    * @return Map<String,Object>
+    */
+    Map<String,Object> queryAll(MyPrimaryCategoryQueryCriteria criteria, Pageable pageable);
 
-    Object queryAll();
+    Object queryAll(Pageable pageable);
+    /**
+    * 查询所有数据不分页
+    * @param criteria 条件参数
+    * @return List<MyPrimaryCategoryDTO>
+    */
+    List<MyPrimaryCategoryDTO> queryAll(MyPrimaryCategoryQueryCriteria criteria);
 
     /**
      * 根据ID查询
@@ -30,4 +43,6 @@ public interface MyPrimaryCategoryService {
     void update(MyPrimaryCategory resources);
 
     void delete(Integer id);
+
+    void download(List<MyPrimaryCategoryDTO> all, HttpServletResponse response) throws IOException;
 }

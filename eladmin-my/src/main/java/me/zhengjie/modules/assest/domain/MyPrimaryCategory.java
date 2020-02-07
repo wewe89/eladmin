@@ -12,24 +12,20 @@ import java.io.Serializable;
 */
 @Entity
 @Data
-@Table(name="my_secondary_category")
-public class MySecondaryCategory implements Serializable {
+@Table(name="my_primary_category")
+public class MyPrimaryCategory implements Serializable {
 
-    // id
+    // ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    // 类别
-    @Column(name = "name")
+    // 名称
+    @Column(name = "name",nullable = false)
     private String name;
 
-    // 名称
-    @Column(name = "pid")
-    private Integer pid;
-
-    public void copy(MySecondaryCategory source){
+    public void copy(MyPrimaryCategory source){
         BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));
     }
 }

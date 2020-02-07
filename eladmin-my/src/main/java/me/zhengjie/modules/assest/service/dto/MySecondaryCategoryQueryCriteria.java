@@ -9,6 +9,4 @@ import me.zhengjie.annotation.Query;
 */
 @Data
 public class MySecondaryCategoryQueryCriteria{
-    @Query(type = Query.Type.EQUAL)
-    private Integer pid;
 }

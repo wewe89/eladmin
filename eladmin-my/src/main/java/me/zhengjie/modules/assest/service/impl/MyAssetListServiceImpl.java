@@ -94,12 +94,13 @@ public class MyAssetListServiceImpl implements MyAssetListService {
         List<Map<String, Object>> list = new ArrayList<>();
         for (MyAssetListDTO myAssetList : all) {
             Map<String,Object> map = new LinkedHashMap<>();
-            map.put("一级类别", myAssetList.getIdPc());
-            map.put("二级类别", myAssetList.getIdSc());
+            map.put("一级类别", myAssetList.getIdPc().getName());
+            map.put("二级类别", myAssetList.getIdSc().getName());
             map.put("资产名称", myAssetList.getIdAn());
-            map.put("所属部门", myAssetList.getIdDept());
-            map.put("责任者", myAssetList.getIdUser());
-            map.put("状态", myAssetList.getStatus());
+            map.put("所属部门", myAssetList.getIdDept().getName());
+            map.put("责任者", myAssetList.getIdUser().getUsername());
+            map.put("状态", myAssetList.getStatus() ? "启用" : "禁用");
+            System.out.println(map);
             list.add(map);
         }
         FileUtil.downloadExcel(list, response);

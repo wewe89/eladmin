@@ -38,13 +38,20 @@ public class MySecondaryCategoryController {
     public ResponseEntity getAll(@PageableDefault(value = 2000, sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable){
         return new ResponseEntity<>(mySecondaryCategoryService.queryAll(pageable),HttpStatus.OK);
     }
+    @Log("导出数据")
+    @ApiOperation("导出数据")
+    @GetMapping(value = "/download")
+    @AnonymousAccess
+    public void download(HttpServletResponse response, MySecondaryCategoryQueryCriteria criteria) throws IOException {
+        mySecondaryCategoryService.download(mySecondaryCategoryService.queryAll(criteria), response);
+    }
 
+    @GetMapping
     @Log("查询MySecondaryCategory")
     @ApiOperation("查询MySecondaryCategory")
-    @GetMapping(value = "/getAllByPid")
     @AnonymousAccess
-    public ResponseEntity getAllByPid(MySecondaryCategoryQueryCriteria criteria){
-        return new ResponseEntity<>(mySecondaryCategoryService.queryAll(criteria),HttpStatus.OK);
+    public ResponseEntity getMySecondaryCategorys(MySecondaryCategoryQueryCriteria criteria, Pageable pageable){
+        return new ResponseEntity<>(mySecondaryCategoryService.queryAll(criteria,pageable),HttpStatus.OK);
     }
 
     @PostMapping

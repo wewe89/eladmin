@@ -13,7 +13,6 @@ public class MySecondaryCategoryDTO implements Serializable {
 
     // id
     private Integer id;
-    private Integer pid;
 
     // 类别
     private String name;

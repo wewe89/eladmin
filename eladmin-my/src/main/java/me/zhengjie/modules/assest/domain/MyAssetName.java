@@ -12,24 +12,19 @@ import java.io.Serializable;
 */
 @Entity
 @Data
-@Table(name="my_secondary_category")
-public class MySecondaryCategory implements Serializable {
+@Table(name="my_asset_name")
+public class MyAssetName implements Serializable {
 
-    // id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    // 类别
+    // 资产名称
     @Column(name = "name")
     private String name;
 
-    // 名称
-    @Column(name = "pid")
-    private Integer pid;
-
-    public void copy(MySecondaryCategory source){
+    public void copy(MyAssetName source){
         BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));
     }
 }

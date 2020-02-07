@@ -31,7 +31,11 @@ public interface MySecondaryCategoryService {
     List<MySecondaryCategoryDTO> queryAll(MySecondaryCategoryQueryCriteria criteria);
 
     Object queryAll(Pageable pageable);
-
+    /**
+     * 根据ID查询
+     * @param id ID
+     * @return MySecondaryCategoryDTO
+     */
     MySecondaryCategoryDTO findById(Integer id);
 
     MySecondaryCategoryDTO create(MySecondaryCategory resources);
@@ -40,4 +44,5 @@ public interface MySecondaryCategoryService {
 
     void delete(Integer id);
 
+    void download(List<MySecondaryCategoryDTO> all, HttpServletResponse response) throws IOException;
 }

@@ -88,4 +88,15 @@ public class MyAssetNameServiceImpl implements MyAssetNameService {
         myAssetNameRepository.deleteById(id);
     }
 
+
+    @Override
+    public void download(List<MyAssetNameDTO> all, HttpServletResponse response) throws IOException {
+        List<Map<String, Object>> list = new ArrayList<>();
+        for (MyAssetNameDTO myAssetName : all) {
+            Map<String,Object> map = new LinkedHashMap<>();
+            map.put("资产名称", myAssetName.getName());
+            list.add(map);
+        }
+        FileUtil.downloadExcel(list, response);
+    }
 }

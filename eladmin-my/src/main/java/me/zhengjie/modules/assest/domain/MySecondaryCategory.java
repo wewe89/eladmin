@@ -25,10 +25,6 @@ public class MySecondaryCategory implements Serializable {
     @Column(name = "name")
     private String name;
 
-    // 名称
-    @Column(name = "pid")
-    private Integer pid;
-
     public void copy(MySecondaryCategory source){
         BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));
     }
