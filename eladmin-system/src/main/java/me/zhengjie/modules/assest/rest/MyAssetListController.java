@@ -5,6 +5,9 @@ import me.zhengjie.modules.assest.domain.MyAssetList;
 import me.zhengjie.modules.assest.service.MyAssetListService;
 import me.zhengjie.modules.assest.service.MyAssetNameService;
 import me.zhengjie.modules.assest.service.dto.MyAssetListQueryCriteria;
+import me.zhengjie.modules.system.domain.User;
+import me.zhengjie.modules.system.service.UserService;
+import me.zhengjie.modules.system.service.dto.UserDto;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,10 +29,12 @@ public class MyAssetListController {
 
     private final MyAssetListService myAssetListService;
     private final MyAssetNameService myAssetNameService;
+    private final UserService userService;
 
-    public MyAssetListController(MyAssetListService myAssetListService,MyAssetNameService myAssetNameService) {
+    public MyAssetListController(MyAssetListService myAssetListService,MyAssetNameService myAssetNameService,UserService userService) {
         this.myAssetListService = myAssetListService;
         this.myAssetNameService=myAssetNameService;
+        this.userService=userService;
     }
 
     @Log("导出数据")
@@ -53,7 +58,11 @@ public class MyAssetListController {
     @ApiOperation("新增MyAssetList")
     @PreAuthorize("@el.check('myAssetList:add')")
     public ResponseEntity create(@Validated @RequestBody MyAssetList resources){
+        System.out.println(resources.toString());
         resources.setName(myAssetNameService.findById(resources.getIdAn()).getName());
+        User user=resources.getIdUser();
+        UserDto ud=userService.findByName(user.getUsername());
+        user.setId(ud.getId());
         return new ResponseEntity<>(myAssetListService.create(resources),HttpStatus.CREATED);
     }
 

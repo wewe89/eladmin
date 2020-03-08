@@ -5,6 +5,7 @@ import me.zhengjie.modules.system.domain.Dept;
 import me.zhengjie.modules.system.domain.User;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 
@@ -38,8 +39,10 @@ public class MyAssetListDTO implements Serializable {
 
     private String name;
 
-    private Date receivetime;
+    private Timestamp receivetime;
 
     private String note;
+
+    private Integer amount;
 
 }

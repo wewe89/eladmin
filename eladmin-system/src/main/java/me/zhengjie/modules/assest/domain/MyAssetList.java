@@ -5,9 +5,11 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
 import me.zhengjie.modules.system.domain.Dept;
 import me.zhengjie.modules.system.domain.User;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -73,11 +75,15 @@ public class MyAssetList implements Serializable {
     private String name;
 
     @Column(name = "receivetime",nullable = false)
-    private Date receivetime;
+    @CreationTimestamp
+    private Timestamp receivetime;
 
-    // 可用性
+
     @Column(name = "note",nullable = false)
     private String note;
+
+    @Column(name = "amount",nullable = false)
+    private Integer amount;
 
     public void copy(MyAssetList source){
         BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));
