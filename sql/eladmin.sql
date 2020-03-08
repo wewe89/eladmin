@@ -11,7 +11,7 @@
  Target Server Version : 80018
  File Encoding         : 65001
 
- Date: 08/03/2020 14:06:52
+ Date: 08/03/2020 14:36:53
 */
 
 SET NAMES utf8mb4;
@@ -328,6 +328,13 @@ INSERT INTO `log` VALUES (17898, '2020-03-08 14:00:34', '查询应用', NULL, 'I
 INSERT INTO `log` VALUES (17899, '2020-03-08 14:00:34', '查询服务器', NULL, 'INFO', 'me.zhengjie.modules.mnt.rest.ServerDeployController.getServers()', '{ criteria: ServerDeployQueryCriteria(blurry=null, createTime=null) pageable: Page request [number: 0, size 20, sort: UNSORTED] }', '172.19.48.1', 13, 'admin', '内网IP', 'Chrome');
 INSERT INTO `log` VALUES (17900, '2020-03-08 14:00:38', '查询服务器', NULL, 'INFO', 'me.zhengjie.modules.mnt.rest.ServerDeployController.getServers()', '{ criteria: ServerDeployQueryCriteria(blurry=null, createTime=null) pageable: Page request [number: 0, size 10, sort: id: DESC] }', '172.19.48.1', 5, 'admin', '内网IP', 'Chrome');
 INSERT INTO `log` VALUES (17901, '2020-03-08 14:02:32', '启动服务', NULL, 'INFO', 'me.zhengjie.modules.mnt.rest.DeployController.startServer()', '{ resources: Deploy(id=6, app=App(id=2, name=eladmin-system-2.4.jar, port=8000, uploadPath=/opt/upload, deployPath=/opt/eladmin, backupPath=/opt/backup/eladmin, startScript=cd /opt/eladmin\nnohup java -jar eladmin-system-2.3.jar --spring.profiles.active=prod >nohup.out 2>&1 &, deployScript=mv -f /opt/upload/eladmin-system-2.3.jar /opt/eladmin/\ncd /opt/eladmin\nnohup java -jar eladmin-system-2.3.jar --spring.profiles.active=prod >nohup.out 2>&1 &, createTime=2019-12-21 16:39:57.0), deploys=[ServerDeploy(id=1, name=腾讯云, ip=132.232.129.20, port=8013, account=root, password=123456, createTime=2019-11-24 20:35:02.0)], createTime=2019-12-21 17:09:02.0) }', '172.19.48.1', 186143, 'admin', '内网IP', 'Chrome');
+INSERT INTO `log` VALUES (17902, '2020-03-08 14:23:07', '查询MyAssetList', NULL, 'INFO', 'me.zhengjie.modules.assest.rest.MyAssetListController.getMyAssetLists()', '{ criteria: MyAssetListQueryCriteria(idAn=null) pageable: Page request [number: 0, size 10, sort: id: ASC] }', '172.19.48.1', 2, 'admin', '内网IP', 'Chrome');
+INSERT INTO `log` VALUES (17903, '2020-03-08 14:23:12', '查询部门', NULL, 'INFO', 'me.zhengjie.modules.system.rest.DeptController.getDepts()', '{ criteria: DeptQueryCriteria(ids=[], name=null, enabled=true, pid=null, createTime=null) }', '172.19.48.1', 3, 'admin', '内网IP', 'Chrome');
+INSERT INTO `log` VALUES (17904, '2020-03-08 14:34:01', '用户登录', NULL, 'INFO', 'me.zhengjie.modules.security.rest.AuthController.login()', '{ authUser: {username=admin, password= ******} request: SecurityContextHolderAwareRequestWrapper[ FirewalledRequest[ org.apache.catalina.connector.RequestFacade@3620bacc]] }', '172.19.48.1', 153, 'admin', '内网IP', 'Chrome');
+INSERT INTO `log` VALUES (17905, '2020-03-08 14:34:01', '查询MyAssetList', NULL, 'INFO', 'me.zhengjie.modules.assest.rest.MyAssetListController.getMyAssetLists()', '{ criteria: MyAssetListQueryCriteria(idAn=null) pageable: Page request [number: 0, size 10, sort: id: ASC] }', '172.19.48.1', 99, 'admin', '内网IP', 'Chrome');
+INSERT INTO `log` VALUES (17906, '2020-03-08 14:35:19', '查询MyAssetList', NULL, 'INFO', 'me.zhengjie.modules.assest.rest.MyAssetListController.getMyAssetLists()', '{ criteria: MyAssetListQueryCriteria(idAn=null) pageable: Page request [number: 0, size 10, sort: id: ASC] }', '172.19.48.1', 2, 'admin', '内网IP', 'Chrome');
+INSERT INTO `log` VALUES (17907, '2020-03-08 14:35:29', '用户登录', NULL, 'INFO', 'me.zhengjie.modules.security.rest.AuthController.login()', '{ authUser: {username=admin, password= ******} request: SecurityContextHolderAwareRequestWrapper[ FirewalledRequest[ org.apache.catalina.connector.RequestFacade@3620bacc]] }', '172.19.48.1', 105, 'admin', '内网IP', 'Chrome');
+INSERT INTO `log` VALUES (17908, '2020-03-08 14:35:29', '查询MyAssetList', NULL, 'INFO', 'me.zhengjie.modules.assest.rest.MyAssetListController.getMyAssetLists()', '{ criteria: MyAssetListQueryCriteria(idAn=null) pageable: Page request [number: 0, size 10, sort: id: ASC] }', '172.19.48.1', 102, 'admin', '内网IP', 'Chrome');
 
 -- ----------------------------
 -- Table structure for menu
@@ -610,8 +617,8 @@ CREATE TABLE `my_asset_list`  (
 -- ----------------------------
 -- Records of my_asset_list
 -- ----------------------------
-INSERT INTO `my_asset_list` VALUES (7, 1, '笔记本', 1, 1, 1, 1, 5, NULL, '22222');
-INSERT INTO `my_asset_list` VALUES (9, 1, '笔记本2', 3, 1, 1, 2, 2, NULL, '外网');
+INSERT INTO `my_asset_list` VALUES (7, 1, '笔记本', 1, 1, 3, 16, 5, NULL, '22222');
+INSERT INTO `my_asset_list` VALUES (9, 1, '笔记本2', 3, 1, 3, 16, 2, NULL, '外网');
 
 -- ----------------------------
 -- Table structure for my_asset_name
@@ -645,9 +652,9 @@ CREATE TABLE `my_primary_category`  (
 -- ----------------------------
 -- Records of my_primary_category
 -- ----------------------------
-INSERT INTO `my_primary_category` VALUES (1, '硬件');
-INSERT INTO `my_primary_category` VALUES (2, '软件');
-INSERT INTO `my_primary_category` VALUES (3, '数据');
+INSERT INTO `my_primary_category` VALUES (1, 'IT基础设施类');
+INSERT INTO `my_primary_category` VALUES (2, '业务接入机具类');
+INSERT INTO `my_primary_category` VALUES (3, '办公接入设备类');
 INSERT INTO `my_primary_category` VALUES (4, '文档');
 
 -- ----------------------------
@@ -666,15 +673,26 @@ CREATE TABLE `my_secondary_category`  (
 -- ----------------------------
 -- Records of my_secondary_category
 -- ----------------------------
-INSERT INTO `my_secondary_category` VALUES (1, '网络设备', 1);
-INSERT INTO `my_secondary_category` VALUES (2, '服务器', 1);
-INSERT INTO `my_secondary_category` VALUES (3, '办公设备', 1);
-INSERT INTO `my_secondary_category` VALUES (4, '主机设备', 1);
-INSERT INTO `my_secondary_category` VALUES (5, '基础设施', 1);
-INSERT INTO `my_secondary_category` VALUES (6, '财务资产', 1);
-INSERT INTO `my_secondary_category` VALUES (7, '身份验证', 1);
-INSERT INTO `my_secondary_category` VALUES (8, '运行系统', 2);
-INSERT INTO `my_secondary_category` VALUES (9, '安全软件', 2);
+INSERT INTO `my_secondary_category` VALUES (1, '机房设施类', 1);
+INSERT INTO `my_secondary_category` VALUES (2, '计算机设备类', 1);
+INSERT INTO `my_secondary_category` VALUES (3, '网络线路类', 1);
+INSERT INTO `my_secondary_category` VALUES (4, '柜面终端', 2);
+INSERT INTO `my_secondary_category` VALUES (5, '打印机', 2);
+INSERT INTO `my_secondary_category` VALUES (6, 'IC卡（磁条）读写器', 2);
+INSERT INTO `my_secondary_category` VALUES (7, '密码键盘', 2);
+INSERT INTO `my_secondary_category` VALUES (8, '指纹仪', 2);
+INSERT INTO `my_secondary_category` VALUES (9, '图像采集仪', 2);
+INSERT INTO `my_secondary_category` VALUES (10, '扫码设备', 2);
+INSERT INTO `my_secondary_category` VALUES (11, '二代身份证阅读器', 2);
+INSERT INTO `my_secondary_category` VALUES (12, '银行柜外清', 2);
+INSERT INTO `my_secondary_category` VALUES (13, '银行柜内清', 2);
+INSERT INTO `my_secondary_category` VALUES (14, '台式电脑', 3);
+INSERT INTO `my_secondary_category` VALUES (15, '一体式电脑', 3);
+INSERT INTO `my_secondary_category` VALUES (16, '笔记本电脑', 3);
+INSERT INTO `my_secondary_category` VALUES (17, '平板电脑', 3);
+INSERT INTO `my_secondary_category` VALUES (18, '打印机', 3);
+INSERT INTO `my_secondary_category` VALUES (19, '投影仪', 3);
+INSERT INTO `my_secondary_category` VALUES (20, '电脑周边硬件', 3);
 
 -- ----------------------------
 -- Table structure for permission
