@@ -1,13 +1,16 @@
 /*
  Navicat Premium Data Transfer
+
  Source Server         : localhost_3306
  Source Server Type    : MySQL
  Source Server Version : 80018
  Source Host           : localhost:3306
  Source Schema         : eladmin
+
  Target Server Type    : MySQL
  Target Server Version : 80018
  File Encoding         : 65001
+
  Date: 08/03/2020 23:16:39
 */
 
